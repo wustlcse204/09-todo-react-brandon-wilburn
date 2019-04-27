@@ -7,49 +7,8 @@ body {
   background-color: #FAFAFA;
 }
 
-h1, h2, h3 {
-  margin: 0;
-}
-
-h1 {
-  text-transform: uppercase;
-}
-
-h2, h3 {
-    font-weight: 300;
-}
-
 .completed-text {
   text-decoration: line-through;
-}
-
-#nav {
-  max-width: 700px;
-  margin: 30px auto 0 auto;
-}
-
-#date {
-  float: left;
-  text-transform: uppercase;
-}
-
-#time {
-  float: right;
-}
-
-@media only screen and (max-width: 750px) {
-	#nav {
-    width: 340px;
-  }
-
-  h1 {
-    font-size: 32px;
-    text-align: center;
-  }
-
-  h2,h3 {
-    font-size: 16px;
-  }
 }
 
 #todo-list {
@@ -62,62 +21,8 @@ h2, h3 {
   overflow-y: scroll;
 }
 
-@media only screen and (max-width: 750px) {
-	#todo-list {
-    width: 360px;
-  }
-  body {
-    font-size:
-  }
-}
-
 #todo-list::-webkit-scrollbar {
   width: 0 !important
-}
-
-#submit {
-  padding: 20px;
-  box-sizing: border-box;
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 700px;
-  width: 70%;
-  min-width: 360px;
-  background-color: #EDEDED;
-  border: 1px solid black;
-}
-
-form textarea {
-  width: 100%;
-  margin: auto;
-  resize: none;
-  border: none;
-  box-sizing: border-box;
-  padding: 10px;
-  font-size: 24px;
-}
-
-form input {
-  width: 100%;
-  margin: auto;
-  resize: none;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  padding: 10px;
-  font-size: 24px;
-  margin-bottom: 4px;
-}
-
-@media only screen and (max-width: 750px) {
-	#submit {
-    width: 360px;
-  }
-  textarea {
-    font-size: 16px;
-  }
 }
 
 button {
@@ -147,14 +52,6 @@ article:hover .close {
   opacity: 1;
 }
 
-#submit-button, .close {
-  color: black;
-  font-size: 34px;
-  margin-top: 3px;
-  float: right;
-  transition: text-shadow .2s ease-in-out, color .2s ease-in-out;
-}
-
 .completed-button, .close {
   opacity: 0;
 }
@@ -179,6 +76,12 @@ article:hover .close {
   /* float: left; */
 }
 
+button:hover {
+  text-shadow: 2px 2px 20px #D1D1D1;
+  color: white;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 750px) {
 	.completed-button {
     opacity: 1;
@@ -195,10 +98,4 @@ article:hover .close {
     font-size: 9px;
   }
 
-}
-
-button:hover {
-  text-shadow: 2px 2px 20px #D1D1D1;
-  color: white;
-  cursor: pointer;
 }
