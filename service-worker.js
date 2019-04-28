@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/09-todo-react-brandon-wilburn/precache-manifest.77851ba336913e23eef955d0a5bf34a0.js"
+  "/09-todo-react-brandon-wilburn/precache-manifest.b868a32b69929e799a38f7838c8d5fe0.js"
 );
 
 workbox.clientsClaim();
