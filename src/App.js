@@ -190,7 +190,7 @@ class App extends Component {
           )}
         </div>
           <NewTodo addedTodo={this.addedTodo} onChange={this.handleChange} input={this.state.input} />
-          <button onClick={this.sort}>Sort</button>
+          <button onClick={this.sort}><i class="fas fa-sort-alpha-down"></i></button>
       </section>
     );
   }
