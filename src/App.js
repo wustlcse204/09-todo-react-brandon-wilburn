@@ -8,11 +8,12 @@ var api = "d18f1adca4df69e67de8c3cb3dae2becf51be12d633dc716731361e782a8dd3b";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { todos: [] };
+    this.state = { todos: []};
     this.addedTodo = this.addedTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     // this.completedTodo = this.completedTodo.bind(this);
-    // this.deleteTodo = this.deleteTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
+    this.sort = this.sort.bind(this);
   }
 
   // render() {
@@ -86,7 +87,6 @@ class App extends Component {
     xhttp2.setRequestHeader("x-api-key", api);
     xhttp2.send(JSON.stringify(data));
     document.getElementById("addTodo").value = '';
-
   }
 
   handleChange(event) {
@@ -103,38 +103,77 @@ class App extends Component {
   //   )
   // }
 
-  completedTodo(event) {
+  // completedTodo(event) {
+  //     console.log("Please")
+  //     var self = this;
+  //   // render() {
+  //     var className = "todo";
+  //     var id = event.target.id;
+  //     console.log(id);
+  //     var data = {
+  //       completed: true
+  //     };
+  //     var wtf = new XMLHttpRequest();
+  //
+  //     wtf.onreadystatechange = function() {
+  //       if (this.readyState == 4 && this.status == 200) {
+  //         //console.log(this.responsetext);
+  //         // event.target.parentNode.classList.add("completed-text");
+  //         self.setState({completed: true});
+  //       } else if (this.readystate == 4) {
+  //         console.log(this.responsetext);
+  //       }
+  //     };
+  //
+  //     wtf.open("PUT", "https://api.kraigh.net/todos/" + id, true);
+  //     wtf.setRequestHeader("Content-type", "application/json");
+  //     wtf.setRequestHeader("x-api-key", api);
+  //     wtf.send(JSON.stringify(data));
+  //     // }
+  // }
+
+  deleteTodo(event) {
     var self = this;
-    // render() {
-      var className = "todo";
-      var id = event.target.id;
-      var data = {
-        completed: true
-      };
-      var wtf = new XMLHttpRequest();
+    console.log("God");
+    var id = event.target.id;
+    console.log(id);
+    var ftw = new XMLHttpRequest();
 
-      wtf.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          //console.log(this.responsetext);
-          // event.target.parentNode.classList.add("completed-text");
-          self.setState({completed: true});
-        } else if (this.readystate == 4) {
-          console.log(this.responsetext);
-        }
-      };
+    ftw.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        const remainingTodos = self.state.todos.filter((todo) => {
+          if (todo.id !== id){
+            return todo;
+          }
+        });
+        self.setState({todos: remainingTodos})
+        // Filter and setState
+        // event.target.parentNode.remove();
+      } else if (this.readystate == 4) {
+        console.log(this.responsetext);
+      }
+    };
 
-      wtf.open("PUT", "https://api.kraigh.net/todos/" + id, true);
-      wtf.setRequestHeader("Content-type", "application/json");
-      wtf.setRequestHeader("x-api-key", api);
-      wtf.send(JSON.stringify(data));
-      // }
+    ftw.open("DELETE", "https://api.kraigh.net/todos/" + id, true);
+    ftw.setRequestHeader("Content-type", "application/json");
+    ftw.setRequestHeader("x-api-key", api);
+    ftw.send();
   }
 
-  deleteTodo() {
+  sort(event) {
     var self = this;
+    var todos = self.state.todos;
+    todos.sort(function (a, b) {
+      return a.text.localeCompare(b.text);
+    })
+    self.setState({todos: todos});
   }
 
   render() {
+    // var className = "";
+    // if (this.state.completed) {
+    //   className = "completed-text";
+    // }
     return (
       <section>
         <div id="nav">
@@ -147,12 +186,12 @@ class App extends Component {
         <div id="todo-list">
           {this.state.todos.map((todo) =>
             <Todo key={todo.id} id={todo.id} completed={todo.completed}
-              text={todo.text} removeDeletedTodo={this.removeDeletedTodo}/>
+              text={todo.text} deleteTodo={this.deleteTodo}/>
           )}
         </div>
           <NewTodo addedTodo={this.addedTodo} onChange={this.handleChange} input={this.state.input} />
+          <button onClick={this.sort}>Sort</button>
       </section>
-
     );
   }
 
